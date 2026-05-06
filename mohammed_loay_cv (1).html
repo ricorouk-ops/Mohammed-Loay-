@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammed Loay — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #c0392b;
+    --accent-light: #e74c3c;
+    --dark: #0f0f0f;
+    --dark2: #1a1a1a;
+    --dark3: #252525;
+    --muted: #888;
+    --text: #f0f0f0;
+    --text2: #bbb;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* LANG TOGGLE */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 14px 40px;
+    background: rgba(15,15,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .lang-btn {
+    padding: 6px 20px;
+    border-radius: 99px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text2);
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    transition: all .2s;
+    margin-left: 8px;
+  }
+  .lang-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .lang-btn:hover:not(.active) { border-color: var(--border2); color: var(--text); background: var(--dark3); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(192,57,43,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(192,57,43,0.15);
+    border: 1px solid rgba(192,57,43,0.3);
+    border-radius: 99px;
+    padding: 6px 16px;
+    font-size: 12px;
+    color: var(--accent-light);
+    font-weight: 500;
+    letter-spacing: .08em;
+    margin-bottom: 28px;
+    width: fit-content;
+  }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-light); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 700;
+    line-height: .95;
+    letter-spacing: -.02em;
+    margin-bottom: 16px;
+  }
+  .hero-name span { color: var(--accent); }
+
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--text2);
+    font-weight: 300;
+    margin-bottom: 40px;
+  }
+
+  .hero-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .hc-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text2);
+    background: var(--dark3);
+    border: 0.5px solid var(--border2);
+    border-radius: 99px;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .hc-item:hover { border-color: var(--accent); color: var(--text); }
+  .hc-icon { font-size: 15px; color: var(--accent); }
+
+  .scroll-hint {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: .08em;
+  }
+  .scroll-line { width: 40px; height: 1px; background: var(--muted); }
+
+  /* SECTIONS */
+  .main { max-width: 1100px; margin: 0 auto; padding: 0 80px 80px; }
+
+  .section { margin-bottom: 80px; }
+
+  .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .sec-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: .2em;
+  }
+  .sec-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .sec-line { flex: 1; height: 0.5px; background: var(--border); }
+
+  /* ABOUT */
+  .about-text {
+    font-size: 18px;
+    color: var(--text2);
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 700px;
+  }
+  .about-text strong { color: var(--text); font-weight: 500; }
+
+  /* EDUCATION */
+  .edu-card {
+    background: var(--dark2);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    transition: border-color .2s;
+  }
+  .edu-card:hover { border-color: var(--accent); }
+  .edu-icon-wrap {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: rgba(192,57,43,0.15);
+    border: 1px solid rgba(192,57,43,0.25);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 24px;
+  }
+  .edu-deg { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .edu-uni { font-size: 14px; color: var(--accent-light); margin-bottom: 4px; }
+  .edu-yr { font-size: 13px; color: var(--muted); }
+
+  /* SKILLS */
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .skill-tag {
+    padding: 10px 20px;
+    background: var(--dark2);
+    border: 0.5px solid var(--border);
+    border-radius: 99px;
+    font-size: 14px;
+    color: var(--text2);
+    transition: all .2s;
+    cursor: default;
+  }
+  .skill-tag:hover { border-color: var(--accent); color: var(--text); background: rgba(192,57,43,0.1); }
+
+  /* EXPERIENCE */
+  .exp-grid { display: flex; flex-direction: column; gap: 24px; }
+  .exp-card {
+    background: var(--dark2);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .exp-card:hover { border-color: var(--border2); }
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 99px;
+  }
+  .exp-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+  .exp-role { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; }
+  .exp-period {
+    font-size: 12px;
+    color: var(--accent-light);
+    background: rgba(192,57,43,0.12);
+    border: 1px solid rgba(192,57,43,0.2);
+    border-radius: 99px;
+    padding: 4px 12px;
+  }
+  .exp-co { font-size: 14px; color: var(--accent-light); margin-bottom: 12px; }
+  .exp-desc { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+  /* PROJECTS */
+  .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .proj-card {
+    background: var(--dark2);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: all .25s;
+    position: relative;
+  }
+  .proj-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .proj-icon { font-size: 28px; margin-bottom: 14px; }
+  .proj-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .proj-desc { font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 14px; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .proj-tag { font-size: 11px; padding: 3px 10px; border-radius: 99px; background: rgba(192,57,43,0.12); color: var(--accent-light); border: 1px solid rgba(192,57,43,0.2); }
+
+  /* CONTACT SECTION */
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .contact-card {
+    background: var(--dark2);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: border-color .2s;
+    text-decoration: none;
+  }
+  .contact-card:hover { border-color: var(--accent); }
+  .cc-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.25); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .cc-lbl { font-size: 11px; color: var(--muted); letter-spacing: .05em; margin-bottom: 3px; }
+  .cc-val { font-size: 13px; color: var(--text); font-weight: 500; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 0.5px solid var(--border);
+  }
+
+  /* RTL */
+  .rtl { direction: rtl; text-align: right; }
+  .rtl .lang-bar { flex-direction: row-reverse; }
+  .rtl .lang-bar .lang-btn { margin-left: 0; margin-right: 8px; }
+  .rtl .hero-tag { flex-direction: row-reverse; }
+  .rtl .scroll-hint { flex-direction: row-reverse; }
+  .rtl .sec-header { flex-direction: row-reverse; }
+  .rtl .exp-card::before { left: auto; right: 0; }
+  .rtl .hero-contacts { flex-direction: row-reverse; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  .hero-tag { animation: fadeUp .6s ease both; }
+  .hero-name { animation: fadeUp .6s .1s ease both; }
+  .hero-sub { animation: fadeUp .6s .2s ease both; }
+  .hero-contacts { animation: fadeUp .6s .3s ease both; }
+  .scroll-hint { animation: fadeUp .6s .4s ease both; }
+
+  /* RESPONSIVE */
+  @media(max-width:768px){
+    .hero { padding: 90px 24px 48px; }
+    .main { padding: 0 24px 60px; }
+    .lang-bar { padding: 14px 24px; }
+    .edu-card { flex-direction: column; }
+    .exp-top { flex-direction: column; }
+  }
+</style>
+</head>
+<body id="body">
+
+<!-- LANG BAR -->
+<nav class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
+  <button class="lang-btn" onclick="setLang('ar')" id="btn-ar">العربية</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag" id="hero-tag">Available for Opportunities</div>
+  <h1 class="hero-name">Mohammed<br><span>Loay</span></h1>
+  <p class="hero-sub" id="hero-sub">Computer Systems Engineer · Al-Azhar University</p>
+  <div class="hero-contacts">
+    <a href="mailto:mohammedxxloay@gmail.com" class="hc-item">
+      <span class="hc-icon">✉</span>
+      <span>mohammedxxloay@gmail.com</span>
+    </a>
+    <a href="tel:0597159807" class="hc-item">
+      <span class="hc-icon">📞</span>
+      <span>0597159807</span>
+    </a>
+    <a href="https://wa.me/970597159807" target="_blank" class="hc-item">
+      <span class="hc-icon">💬</span>
+      <span>+970 597 159 807</span>
+    </a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span id="scroll-label">SCROLL TO EXPLORE</span>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- ABOUT -->
+  <section class="section">
+    <div class="sec-header">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title" id="sec-about">About Me</h2>
+      <div class="sec-line"></div>
+    </div>
+    <p class="about-text" id="about-text">
+      A <strong>passionate Computer Systems Engineer</strong> graduated from <strong>Al-Azhar University</strong> with a strong foundation in software development, system design, and problem solving. Driven by a genuine love for technology and innovation, seeking opportunities to build impactful solutions and grow within a dynamic engineering environment.
+    </p>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section">
+    <div class="sec-header">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title" id="sec-edu">Education</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon-wrap">🎓</div>
+      <div>
+        <div class="edu-deg" id="edu-deg">Bachelor of Computer Systems Engineering</div>
+        <div class="edu-uni" id="edu-uni">Al-Azhar University</div>
+        <div class="edu-yr" id="edu-yr">Computer Engineering · Gaza</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="sec-header">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title" id="sec-skills">Technical Skills</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="skills-grid" id="skills-grid">
+      <span class="skill-tag">Programming</span>
+      <span class="skill-tag">System Design</span>
+      <span class="skill-tag">Problem Solving</span>
+      <span class="skill-tag">Networking</span>
+      <span class="skill-tag">Databases</span>
+      <span class="skill-tag">Operating Systems</span>
+      <span class="skill-tag">Algorithms</span>
+      <span class="skill-tag">Data Structures</span>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section">
+    <div class="sec-header">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title" id="sec-exp">Experience</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-top">
+          <div class="exp-role" id="exp1-role">Computer Systems Engineer</div>
+          <div class="exp-period" id="exp1-period">2024 — Present</div>
+        </div>
+        <div class="exp-co" id="exp1-co">Open to Opportunities</div>
+        <p class="exp-desc" id="exp1-desc">Seeking engineering roles to apply computer systems knowledge in real-world environments. Dedicated to continuous learning and delivering high-quality technical solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section">
+    <div class="sec-header">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title" id="sec-proj">Projects</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-icon">💻</div>
+        <div class="proj-name" id="proj1-name">Academic Project</div>
+        <p class="proj-desc" id="proj1-desc">A university project applying computer systems engineering concepts including system design, programming, and problem-solving methodologies.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Engineering</span>
+          <span class="proj-tag">System Design</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-icon">⚙️</div>
+        <div class="proj-name" id="proj2-name">Your Project Here</div>
+        <p class="proj-desc" id="proj2-desc">Add your projects and I will update this section with the real details and descriptions.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section">
+    <div class="sec-header">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title" id="sec-contact">Contact</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:mohammedxxloay@gmail.com" class="contact-card">
+        <div class="cc-icon">✉</div>
+        <div>
+          <div class="cc-lbl" id="lbl-email">EMAIL</div>
+          <div class="cc-val">mohammedxxloay@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:0597159807" class="contact-card">
+        <div class="cc-icon">📞</div>
+        <div>
+          <div class="cc-lbl" id="lbl-phone">PHONE</div>
+          <div class="cc-val">0597159807</div>
+        </div>
+      </a>
+      <a href="https://wa.me/970597159807" target="_blank" class="contact-card">
+        <div class="cc-icon">💬</div>
+        <div>
+          <div class="cc-lbl" id="lbl-wa">WHATSAPP</div>
+          <div class="cc-val">+970 597 159 807</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span id="footer-text">© 2025 Mohammed Loay · Computer Systems Engineer</span>
+</footer>
+
+<script>
+const data = {
+  en: {
+    dir: 'ltr',
+    heroTag: 'Available for Opportunities',
+    heroSub: 'Computer Systems Engineer · Al-Azhar University',
+    scrollLabel: 'SCROLL TO EXPLORE',
+    secAbout: 'About Me',
+    aboutText: 'A <strong>passionate Computer Systems Engineer</strong> graduated from <strong>Al-Azhar University</strong> with a strong foundation in software development, system design, and problem solving. Driven by a genuine love for technology and innovation, seeking opportunities to build impactful solutions and grow within a dynamic engineering environment.',
+    secEdu: 'Education',
+    eduDeg: 'Bachelor of Computer Systems Engineering',
+    eduUni: 'Al-Azhar University',
+    eduYr: 'Computer Engineering · Gaza',
+    secSkills: 'Technical Skills',
+    skills: ['Programming','System Design','Problem Solving','Networking','Databases','Operating Systems','Algorithms','Data Structures'],
+    secExp: 'Experience',
+    exp1Role: 'Computer Systems Engineer',
+    exp1Period: '2024 — Present',
+    exp1Co: 'Open to Opportunities',
+    exp1Desc: 'Seeking engineering roles to apply computer systems knowledge in real-world environments. Dedicated to continuous learning and delivering high-quality technical solutions.',
+    secProj: 'Projects',
+    proj1Name: 'Academic Project',
+    proj1Desc: 'A university project applying computer systems engineering concepts including system design, programming, and problem-solving methodologies.',
+    proj2Name: 'Your Project Here',
+    proj2Desc: 'Add your projects and I will update this section with the real details and descriptions.',
+    secContact: 'Contact',
+    lblEmail: 'EMAIL',
+    lblPhone: 'PHONE',
+    lblWa: 'WHATSAPP',
+    footer: '© 2025 Mohammed Loay · Computer Systems Engineer'
+  },
+  ar: {
+    dir: 'rtl',
+    heroTag: 'متاح للفرص الوظيفية',
+    heroSub: 'مهندس أنظمة حاسوب · جامعة الأزهر',
+    scrollLabel: 'اسحب للاستكشاف',
+    secAbout: 'نبذة عني',
+    aboutText: 'مهندس أنظمة حاسوب <strong>شغوف بالتقنية</strong>، تخرجت من <strong>جامعة الأزهر</strong> بأساس قوي في تطوير البرمجيات وتصميم الأنظمة وحل المشكلات. أسعى للاستفادة من مهاراتي التقنية في بناء حلول مبتكرة والنمو ضمن بيئة هندسية متميزة.',
+    secEdu: 'التعليم',
+    eduDeg: 'بكالوريوس هندسة أنظمة حاسوب',
+    eduUni: 'جامعة الأزهر',
+    eduYr: 'هندسة الحاسوب · غزة',
+    secSkills: 'المهارات التقنية',
+    skills: ['البرمجة','تصميم الأنظمة','حل المشكلات','الشبكات','قواعد البيانات','أنظمة التشغيل','الخوارزميات','هياكل البيانات'],
+    secExp: 'الخبرات',
+    exp1Role: 'مهندس أنظمة حاسوب',
+    exp1Period: '2024 — الحاضر',
+    exp1Co: 'أبحث عن فرص عمل',
+    exp1Desc: 'أسعى لشغل وظائف هندسية لتطبيق معرفتي في أنظمة الحاسوب في بيئات عمل حقيقية. ملتزم بالتعلم المستمر وتقديم حلول تقنية عالية الجودة.',
+    secProj: 'المشاريع',
+    proj1Name: 'مشروع أكاديمي',
+    proj1Desc: 'مشروع جامعي يطبق مفاهيم هندسة أنظمة الحاسوب بما في ذلك تصميم الأنظمة والبرمجة ومنهجيات حل المشكلات.',
+    proj2Name: 'مشروعك هنا',
+    proj2Desc: 'أضف مشاريعك وسأقوم بتحديث هذا القسم بالتفاصيل والأوصاف الحقيقية.',
+    secContact: 'التواصل',
+    lblEmail: 'البريد الإلكتروني',
+    lblPhone: 'الهاتف',
+    lblWa: 'واتساب',
+    footer: '© 2025 محمد لؤي · مهندس أنظمة حاسوب'
+  }
+};
+
+function setLang(lang) {
+  const d = data[lang];
+  document.documentElement.lang = lang;
+  document.body.style.direction = d.dir;
+
+  document.getElementById('hero-tag').textContent = d.heroTag;
+  document.getElementById('hero-sub').textContent = d.heroSub;
+  document.getElementById('scroll-label').textContent = d.scrollLabel;
+  document.getElementById('sec-about').textContent = d.secAbout;
+  document.getElementById('about-text').innerHTML = d.aboutText;
+  document.getElementById('sec-edu').textContent = d.secEdu;
+  document.getElementById('edu-deg').textContent = d.eduDeg;
+  document.getElementById('edu-uni').textContent = d.eduUni;
+  document.getElementById('edu-yr').textContent = d.eduYr;
+  document.getElementById('sec-skills').textContent = d.secSkills;
+
+  const grid = document.getElementById('skills-grid');
+  grid.innerHTML = d.skills.map(s => `<span class="skill-tag">${s}</span>`).join('');
+
+  document.getElementById('sec-exp').textContent = d.secExp;
+  document.getElementById('exp1-role').textContent = d.exp1Role;
+  document.getElementById('exp1-period').textContent = d.exp1Period;
+  document.getElementById('exp1-co').textContent = d.exp1Co;
+  document.getElementById('exp1-desc').textContent = d.exp1Desc;
+  document.getElementById('sec-proj').textContent = d.secProj;
+  document.getElementById('proj1-name').textContent = d.proj1Name;
+  document.getElementById('proj1-desc').textContent = d.proj1Desc;
+  document.getElementById('proj2-name').textContent = d.proj2Name;
+  document.getElementById('proj2-desc').textContent = d.proj2Desc;
+  document.getElementById('sec-contact').textContent = d.secContact;
+  document.getElementById('lbl-email').textContent = d.lblEmail;
+  document.getElementById('lbl-phone').textContent = d.lblPhone;
+  document.getElementById('lbl-wa').textContent = d.lblWa;
+  document.getElementById('footer-text').textContent = d.footer;
+
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
+
+  if (d.dir === 'rtl') {
+    document.body.classList.add('rtl');
+  } else {
+    document.body.classList.remove('rtl');
+  }
+}
+</script>
+</body>
+</html>
